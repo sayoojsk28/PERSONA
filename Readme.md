@@ -147,8 +147,7 @@ This project was built as a demonstration of how personalized conversational AI 
 ### 1. Clone the repository
 
 ```bash
-git clone <repository-url>
-cd <repository-folder>
+git https://github.com/sayoojsk28/PERSONA.git
 ```
 
 ### 2. Create a virtual environment (Optional but recommended)
