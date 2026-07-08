@@ -173,7 +173,17 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 4. Install and start Ollama
+### 4. Create a .env file
+
+Create a .env file in the project's root directory and add:
+
+SECRET_KEY=your_secret_key_here
+
+You can use any random secret string, for example:
+
+SECRET_KEY=my_super_secret_key_123
+
+### 5. Install and start Ollama
 
 Download and install Ollama from:
 
@@ -191,13 +201,13 @@ Start the Ollama server if it isn't already running:
 ollama serve
 ```
 
-### 5. Run the application
+### 6. Run the application
 
 ```bash
 python app.py
 ```
 
-### 6. Open in your browser
+### 7. Open in your browser
 
 ```
 http://127.0.0.1:5000
