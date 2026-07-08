@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Persona AI</title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+
+
+</head>
+
+
+<body>
+
+
+<div class="background-glow"></div>
+
+
+
+<div class="app">
+
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                ✨
+            </div>
+
+            <h2>Persona AI</h2>
+
+        </div>
+
+
+
+        <button id="new-chat-btn">
+
+            ＋ New Conversation
+
+        </button>
+
+
+
+        <div class="conversation-title">
+
+            Conversations
+
+        </div>
+
+
+
+        <div id="conversation-list"></div>
+
+
+
+
+        <div class="sidebar-bottom">
+
+
+            <a href="/memories">
+
+                🧠 Memories
+
+            </a>
+
+
+            <!-- <a href="/persona">
+
+                ⚙ Persona
+
+            </a> -->
+
+
+        </div>
+
+
+
+    </aside>
+
+
+
+
+
+
+    <!-- Chat Area -->
+
+
+    <main class="chat-main">
+
+
+
+        <div class="chat-header">
+
+
+            <div class="ai-avatar">
+
+                🤖
+
+            </div>
+
+
+            <div>
+
+                <h3>Persona</h3>
+
+                <span>
+                    Your AI Friend
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+        <div id="chat-box">
+
+
+        </div>
+
+
+
+
+
+
+        <div class="chat-input">
+
+
+            <input 
+                id="message" 
+                type="text" 
+                placeholder="Talk with your AI friend..."
+            >
+
+
+
+            <button onclick="sendMessage()">
+
+                Send 🚀
+
+            </button>
+
+
+
+        </div>
+
+
+
+
+    </main>
+
+
+
+</div>
+
+
+
+
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+
+
+</body>
+
+</html>

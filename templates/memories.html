@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Your Memories</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/memories.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🧠 Your Memories</h1>
+
+    {% if memories %}
+
+        {% for memory in memories %}
+
+        <div class="memory-card">
+
+            <div class="memory-item">
+
+                <div class="memory-left">
+
+                    <p>{{ memory.memory_text }}</p>
+
+                    <small>
+
+                        Importance :
+                        {{ "%.2f"|format(memory.importance) }}
+
+                        &nbsp; | &nbsp;
+
+                        Used :
+                        {{ memory.times_used }}
+
+                    </small>
+
+                </div>
+
+                <div class="memory-actions">
+
+                     <button class="edit-btn"onclick='editMemory({{ memory.id }},{{ memory.memory_text|tojson }})'>
+
+                     ✏ Edit
+
+                     </button>
+
+                    <button class="delete-btn"onclick="deleteMemory({{ memory.id }})">
+
+                    🗑 Delete
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>No memories saved yet.</p>
+
+    {% endif %}
+
+    <br>
+
+    <a href="/chat" class="btn">
+        ⬅ Back to Chat
+    </a>
+
+</div>
+
+<div id="editModal" class="modal">
+
+    <div class="modal-content">
+
+        <h2>Edit Memory</h2>
+
+        <input
+            type="text"
+            id="memoryValue"
+        >
+
+        <div class="modal-buttons">
+
+            <button
+                class="btn"
+                onclick="saveEditedMemory()">
+
+                Save
+
+            </button>
+
+            <button
+                class="delete-btn"
+                onclick="closeModal()">
+
+                Cancel
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+let currentMemoryId = null;
+
+function editMemory(id, text){
+
+    currentMemoryId = id;
+
+    document.getElementById("memoryValue").value = text;
+
+    document.getElementById("editModal").style.display = "flex";
+
+}
+
+function closeModal(){
+
+    document.getElementById("editModal").style.display = "none";
+
+}
+
+async function saveEditedMemory(){
+
+    let value = document
+        .getElementById("memoryValue")
+        .value
+        .trim();
+
+    if(value === ""){
+
+        alert("Memory cannot be empty.");
+
+        return;
+
+    }
+
+    let res = await fetch("/edit_memory",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+
+            id:currentMemoryId,
+
+            memory:value
+
+        })
+
+    });
+
+    let data = await res.json();
+
+    if(data.status==="success"){
+
+        location.reload();
+
+    }
+
+}
+
+async function deleteMemory(id){
+
+    if(!confirm("Delete this memory?"))
+        return;
+
+    let res = await fetch("/delete_memory",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+
+            id:id
+
+        })
+
+    });
+
+    let data = await res.json();
+
+    if(data.status==="success"){
+
+        location.reload();
+
+    }
+
+}
+
+window.onclick=function(event){
+
+    const modal=document.getElementById("editModal");
+
+    if(event.target===modal){
+
+        closeModal();
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,266 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-family:'Poppins',sans-serif;
+
+    background:
+    radial-gradient(circle at top left,#6366f155,transparent 35%),
+    radial-gradient(circle at bottom right,#8b5cf655,transparent 35%),
+    #080d1a;
+
+    color:white;
+
+    overflow:hidden;
+
+}
+
+
+/* background glow */
+
+body::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:400px;
+
+    height:400px;
+
+    background:#6366f1;
+
+    filter:blur(150px);
+
+    opacity:.25;
+
+    top:-100px;
+
+    left:-100px;
+
+}
+
+
+.container{
+
+    width:90%;
+
+    max-width:600px;
+
+    text-align:center;
+
+    padding:50px 40px;
+
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(20px);
+
+
+    border-radius:30px;
+
+
+    box-shadow:
+
+    0 25px 70px rgba(0,0,0,.5);
+
+
+    animation:appear .8s ease;
+
+}
+
+
+
+@keyframes appear{
+
+
+from{
+
+    opacity:0;
+
+    transform:translateY(40px) scale(.9);
+
+}
+
+
+to{
+
+    opacity:1;
+
+    transform:translateY(0) scale(1);
+
+}
+
+
+}
+
+
+
+.container h1{
+
+
+    font-size:38px;
+
+    margin-bottom:20px;
+
+
+    background:linear-gradient(
+        90deg,
+        #818cf8,
+        #c084fc
+    );
+
+
+    background-clip: text;
+-webkit-background-clip: text;
+
+    color:transparent;
+
+
+}
+
+
+
+.container p{
+
+
+    color:#cbd5e1;
+
+    font-size:18px;
+
+    margin-bottom:40px;
+
+
+}
+
+
+
+.btn{
+
+
+    display:inline-block;
+
+
+    padding:16px 45px;
+
+
+    border-radius:50px;
+
+
+    text-decoration:none;
+
+
+    color:white;
+
+
+    font-size:18px;
+
+    font-weight:600;
+
+
+    background:
+    linear-gradient(
+        135deg,
+        #4f46e5,
+        #8b5cf6
+    );
+
+
+    box-shadow:
+
+    0 15px 35px rgba(99,102,241,.45);
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.btn:hover{
+
+
+    transform:translateY(-5px) scale(1.05);
+
+
+    box-shadow:
+
+    0 20px 50px rgba(139,92,246,.6);
+
+
+}
+
+
+/* small floating animation */
+
+.container::before{
+
+    content:"✨";
+
+    position:absolute;
+
+    font-size:50px;
+
+    transform:translate(-230px,-180px);
+
+    animation:float 3s infinite ease-in-out;
+
+}
+
+
+
+@keyframes float{
+
+
+0%,100%{
+
+    transform:translate(-230px,-180px);
+
+}
+
+
+50%{
+
+    transform:translate(-230px,-200px);
+
+}
+
+
+}
+
+
+
+@media(max-width:600px){
+
+
+.container{
+
+    padding:35px 25px;
+
+}
+
+
+.container h1{
+
+    font-size:28px;
+
+}
+
+
+}
